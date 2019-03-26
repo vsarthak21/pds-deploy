@@ -2,6 +2,7 @@ import React from "react";
 import { SideNav, Nav } from "react-sidenav";
 import NavEg from './NavEg'
 import styled from "styled-components";
+import Utilities from './Utilities';
 import {
   AppContainer as BaseAppContainer,
   ExampleNavigation as BaseNavigation,
@@ -63,8 +64,10 @@ export class RenderItems extends React.Component {
     this.state = {
       selectedPath: "1",
       showPds: false,
+      showUtilities:false,
       dash:"block",
-      pdsApp:"none"
+      pdsApp:"none",
+      utilities:"none"
     };
   }
 
@@ -76,16 +79,30 @@ export class RenderItems extends React.Component {
   changePds = () => {
     this.setState({
       showPds: true,
+      showUtilities:false,
       dash:"none",
-      pdsApp:"block"
+      pdsApp:"block",
+      utilities:"none"
     })
   }
 
   gotoDash=()=>{
     this.setState({
       showPds: true,
+      showUtilities:false,
       dash:"block",
-      pdsApp:"none"
+      pdsApp:"none",
+      utilities:"none"
+    })
+  }
+
+  gotoUtilities=()=>{
+    this.setState({
+      showPds: false,
+      showUtilities:true,
+      dash:"none",
+      pdsApp:"none",
+      utilities:"block"
     })
   }
 
@@ -93,7 +110,7 @@ export class RenderItems extends React.Component {
     return (
       <div>
 
-        <NavEg changePdsToggler={this.changePds} />
+        <NavEg changePdsToggler={this.changePds} /* changeBOSToggler={this.gotoUtilities} *//>
 
         <AppContainer>
 
@@ -194,11 +211,11 @@ export class RenderItems extends React.Component {
                   </IconCntChild>
                   <Text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RMS Data</Text>
                 </Nav>
-                <Nav id="4">
+                <Nav id="4" onClick={this.gotoUtilities}>
                   <IconCntChild>
                     {/* <Icon icon={users} /> */}
                   </IconCntChild>
-                  <Text> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Utilities</Text>
+                  <Text onClick={this.gotoUtilities}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Utilities</Text>
                 </Nav>
                 <Nav id="5">
                   <IconCntChild>
@@ -270,6 +287,9 @@ export class RenderItems extends React.Component {
             </div>
             <div style={{ display: this.state.pdsApp }}>
               <TableDiv />
+            </div>
+            <div style={{ display: this.state.utilities }}>
+              <Utilities />
             </div>
 
           </Body>

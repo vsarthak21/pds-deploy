@@ -7,6 +7,7 @@ import Chart from './Chart';
 import {Row , Col, Container} from 'react-bootstrap';
 import { Progress } from 'reactstrap';
 import Todo from "./Todo";
+import PieChart from './Graph.js';
 
 class Dashboard extends React.Component{
     render(){
@@ -17,8 +18,8 @@ class Dashboard extends React.Component{
                 <Col md={9}>
                     <Cards />
                 </Col>
-                <Col md={3}>
-                    <Chart />
+                <Col md={3} style={{display:"block", margin:"auto"}}>
+                    <PieChart/>
                 </Col>
             </Row>
             <Row>

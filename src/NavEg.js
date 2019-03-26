@@ -77,19 +77,18 @@ export default class Example extends React.Component {
     return (
       <div>
         <div>
-          <Navbar color="dark" dark expand="md">
-            <NavbarBrand className="mr-2" href="/"><strong>PDS APPLICATION</strong></NavbarBrand>
+          <Navbar color="dark" dark expand="md" style={{padding:"1.5rem", fontSize:'1.3rem' }}>
+            <NavbarBrand className="mr-2" href="/" style={{fontSize:"1.4rem"}}><strong>PDS APPLICATION</strong></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="mx-auto" navbar>
                 <NavItem onClick={this.props.changePdsToggler}>
                   <NavLink href="#" >PDS</NavLink>
                 </NavItem>
-                <UncontrolledDropdown>
-                  <DropdownToggle nav className="mr-2">
-                    BOS
-                </DropdownToggle>
-                </UncontrolledDropdown>
+                
+                <NavItem /* onClick={this.props.changeBOSToggler} */>
+                  <NavLink href="#"> BOS</NavLink>
+                </NavItem>
 
                 <Form inline className="mr-2">
                   <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -1,14 +1,19 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { Popover, PopoverBody } from 'reactstrap';
 import styled from "styled-components";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import Icon from 'react-icons-kit';
+
 import {Type } from 'react-bootstrap-table2-editor';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor'
+import SizeTable from './SizeTable';
+import MaterialTable from './MaterialTable';
+import CPTTable1 from './CPTTable1';
+import CPTTable2 from './CPTTable2';
+import FormOpen from './FormOpen';
+import { Row,Col } from 'react-bootstrap';
 
 const IconCnt = styled.div`
   
@@ -27,6 +32,17 @@ const PopHead = styled.div`
   
 `;
 
+
+
+//   const selectRow = {
+//     mode: 'radio',
+//     clickToSelect: false,
+//     clickToEdit: true,
+//     onSelect: (row, isSelect, rowIndex, e) => {
+//        this.setState
+//       },
+// };
+
 class TableDiv extends React.Component {
 
     constructor(props) {
@@ -35,70 +51,57 @@ class TableDiv extends React.Component {
             modal: false,
             popoverOpen: false,
             dropdownOpen: false,
+            index:"null",
             products: [
-                {
-                    task: 1,
-                    date: "2019-12-03",
-                    subject: "Meeting",
-                    name: "Sarthak",
-                    'relatedTo': "SopraSteria"
+                {   task:1,
+                    offer: "3900",
+                    catNo: "AB123",
+                    supplier: "A MIR CO LTD - FOB",
+                    desc: "Cotton Shirt",
+                    style: "AB123",
+                    
                 },
-                {
-                    task: 2,
-                    date: "2019-12-03",
-                    subject: "Meeting",
-                    name: "Sarthak",
-                    'relatedTo': "SopraSteria"
+                {   task:2,
+                    offer: "3800",
+                    catNo: "PB127",
+                    supplier: "OL HADFIELD",
+                    desc: "Shoes",
+                    style: "PB127",
+                    
                 },
-                {
-                    task: 3,
-                    date: "2019-12-03",
-                    subject: "Meeting",
-                    name: "Sarthak",
-                    'relatedTo': "SopraSteria"
-                },
-                {
-                    task: 4,
-                    date: "2019-12-03",
-                    subject: "Meeting",
-                    name: "Sarthak",
-                    'relatedTo': "SopraSteria"
-                },
-                {
-                    task: 5,
-                    date: "2019-12-03",
-                    subject: "Meeting",
-                    name: "Sarthak",
-                    'relatedTo': "SopraSteria"
-                },
+                {},
+                {},
+                {},
             ],
 
             columns: [
                 {
                     dataField: 'task',
-                    text: 'Task No.'
+                    text: 'P_Id'
                 },
                 {
-                    dataField: 'date',
-                    text: 'Date',
-                    editor: {
-                        type: Type.DATE
-                    },
-                    
+                    dataField: 'offer',
+                    text: 'Master offer No.'
                 },
                 {
-                    dataField: 'subject',
-                    text: 'Subject',
+                    dataField: 'catNo',
+                    text: 'CAT NO.',
+                                      
+                },
+                {
+                    dataField: 'supplier',
+                    text: 'Supplier',
                    
                 }, {
-                    dataField: 'name',
-                    text: 'Name',
+                    dataField: 'desc',
+                    text: 'Internet Product Description',
                     
                 }, {
-                    dataField: 'relatedTo',
-                    text: 'Related to',
+                    dataField: 'style',
+                    text: 'STYLE',
                     
-                }],
+                }
+            ],
         };
 
         this.toggle = this.toggle.bind(this);
@@ -110,6 +113,17 @@ class TableDiv extends React.Component {
         this.saveListener = this.saveListener.bind(this);
     }
 
+    selectRow = {
+        mode: 'radio',
+        clickToSelect: false,
+        clickToEdit: true,
+        onSelect: (row, isSelect, rowIndex, e) => {
+           this.setState({
+               index:rowIndex
+           })
+          },
+    };
+        
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
@@ -150,10 +164,18 @@ class TableDiv extends React.Component {
 
 
     render() {
+        let cptTable;
+        if(this.state.index===0){
+            cptTable=<CPTTable1/>
+        }
+        else if(this.state.index===1){
+            cptTable=<CPTTable2/>
+        }
+
         return (
             <div>
                 
-                <div style={{ backgroundColor: 'aliceblue', height: 100 }}>
+                <div style={{ backgroundColor: 'cyan', height: 100 }}>
                     <div className="row">
 
                         <div className="col-1">
@@ -285,28 +307,46 @@ class TableDiv extends React.Component {
                         </ModalFooter>
                     </Modal>
                 </div>
-                <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="nav-justified">
+                <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="nav-justified" style={{background:"aliceblue"}}>
                     <Tab eventKey="home" title="Cat-Color" >
-                        <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
-
+                        <Row style={{marginTop:"1rem"}}>
+                            <Col md={10}>
+                                <BootstrapTable selectRow={this.selectRow} classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
+                            </Col>
+                            <Col style={{marginTop:"3rem"}}>
+                                <Row style={{marginBottom:"0.6rem", marginTop:"0.4rem"}}>
+                                    <Col><FormOpen /></Col>
+                                </Row>
+                                <Row style={{marginBottom:"0.6rem", marginTop:"0.4rem"}}>
+                                    <Col><FormOpen /></Col>
+                                </Row>
+                                <Row style={{marginBottom:"0.6rem", marginTop:"0.4rem"}}>
+                                    <Col><FormOpen /></Col>
+                                </Row>
+                                <Row style={{marginBottom:"0.6rem", marginTop:"0.4rem"}}>
+                                    <Col><FormOpen /></Col>
+                                </Row>
+                                <Row style={{marginBottom:"0.6rem", marginTop:"0.4rem"}}>
+                                    <Col><FormOpen /></Col>
+                                </Row>
+                            </Col>
+                            </Row>
                     </Tab>
                     <Tab eventKey="profile" title="Sizes">
-                        <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
 
+                       {/* <SizeTable1/><SizeTable2/> */}
                     </Tab>
                     <Tab eventKey="contact" title="Materials" >
-                        <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
-                        
+                        {/* <MaterialTable1/><MaterialTable2/> */}
                     </Tab>
                     <Tab eventKey="cpt" title="CPT" >
-                        <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
-                        
+                        {cptTable}
                     </Tab>
                     <Tab eventKey="webcopy" title="Web-Copy" >
-                        <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
-
+                        
                     </Tab>
                 </Tabs>;
+                
             </div>
         );
     }
