@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor';
 
-class SizeTable extends React.Component {
+class SizeTab2 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,35 +10,91 @@ class SizeTable extends React.Component {
         this.state = {
             products: [
                 {
-                    size: "5",
-                    rms: "sdad",
-                    diffid: "dassda"
+                    size:'L',
+                    suppcost:'99.00',
+                    suppdisc:'',
+                    actcostprice:'30',
+                    costpricecurrency:'GBP',
+                    actcostpricepounds:'60',
+                    container:'',
+                    duty:'0.00',
+                    agentcomm:'',
+                    freight:'0',
+                    overridelandedprice:'N',
+                    landedprice:'50',
+                    sellingprice:'190',
+                    deliverycharge:'',
+                    vat:'30',
+                    bim:'45.2',
+                    bimdel:'',
+                    bysize:'10',
+                    rmsd3a:'Long',
+                    rmsd3b:'LARGE',
+                    usermod:'TPID532',
+                    
+                    usercreate:'MESW',
+                    
+
                 },
                 {
-                    size: "6",
-                    rms: "dasda",
-                    diffid: "fads"
+                    size:'M',
+                    suppcost:'20.00',
+                    suppdisc:'',
+                    actcostprice:'30',
+                    costpricecurrency:'GBP',
+                    actcostpricepounds:'10',
+                    container:'',
+                    duty:'0.00',
+                    agentcomm:'',
+                    freight:'0',
+                    overridelandedprice:'N',
+                    landedprice:'10',
+                    sellingprice:'190',
+                    deliverycharge:'',
+                    vat:'30',
+                    bim:'30.2',
+                    bimdel:'',
+                    bysize:'10',
+                    rmsd3a:'Long',
+                    rmsd3b:'LARGE',
+                    usermod:'TP5372',
+                    
+                    usercreate:'MESW',
+                    
+
                 },
                 {
-                    size: "4",
-                    rms: "fsadsf",
-                    diffid: "ijfdioj"
+                    size:'4XL',
+                    suppcost:'90.00',
+                    suppdisc:'',
+                    actcostprice:'30',
+                    costpricecurrency:'GBP',
+                    actcostpricepounds:'10',
+                    container:'',
+                    duty:'0.00',
+                    agentcomm:'',
+                    freight:'0',
+                    overridelandedprice:'N',
+                    landedprice:'21',
+                    sellingprice:'200',
+                    deliverycharge:'',
+                    vat:'25',
+                    bim:'36.2',
+                    bimdel:'',
+                    bysize:'10',
+                    rmsd3a:'Long',
+                    rmsd3b:'LARGE',
+                    usermod:'TPID532',
+                    
+                    usercreate:'MESW',
+                    
+
                 },
-                {
-                    size: "8",
-                    rms: "hdsk",
-                    diffid: "jfiosdj"
-                },
-                {
-                    size: "5",
-                    rms: "fdhksd",
-                    diffid: "sdalkd"
-                },
-                {
-                    size: "6",
-                    rms: "dsaasd",
-                    diffid: "dsadsa"
-                },
+                
+                
+
+               
+                
 
             ],
 
@@ -53,17 +109,11 @@ class SizeTable extends React.Component {
                 },
                 {
                     dataField: 'suppdisc',
-                    text: 'Supplier Discount%',
-                    headerStyle: {
-                        width:100
-                      }
+                    text: 'Supplier Discount%'
                 },
                 {
                     dataField: 'actcostprice',
-                    text: 'Actual Supplier Cost Price',
-                    headerStyle: {
-                        width:100
-                      }
+                    text: 'Actual Supplier Cost Price'
                 },
                 {
                     dataField: 'costpricecurrency',
@@ -133,17 +183,12 @@ class SizeTable extends React.Component {
                     dataField: 'usermod',
                     text: 'User Modified'
                 },
+                
                 {
-                    dataField: 'datemod',
-                    text: 'Date Modified'
-                }, {
                     dataField: 'usercreate',
                     text: 'User Created'
                 },
-                {
-                    dataField: 'datecreate',
-                    text: 'Date Created'
-                },
+               
 
 
 
@@ -155,11 +200,11 @@ class SizeTable extends React.Component {
     render() {
         return (
             <div>               
-                <BootstrapTable style={{backgroundColor:"green"}} classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
+                <BootstrapTable classes="rounded table-hover" headerClasses="thead-dark" keyField='task' data={this.state.products} columns={this.state.columns} cellEdit={cellEditFactory({ mode: 'click' })} />
             </div>
         );
     }
 
 }
 
-export default SizeTable;
+export default SizeTab2;

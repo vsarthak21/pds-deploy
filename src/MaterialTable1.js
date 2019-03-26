@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor';
 
-class MaterialTable extends React.Component {
+class MaterialTable1 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,9 +10,16 @@ class MaterialTable extends React.Component {
         this.state = {
             products: [
                 {
-                    size: "5",
-                    rms: "sdad",
-                    diffid: "dassda"
+                   material:'COTTON',
+                   pct:'100',
+                   code:'OUTER',
+                   weight:'',
+                   weightum:'',
+                   weightdetails:'',
+                   gauge:'',
+                   yarnacc:'',
+                   materialcon:''
+
                 }
 
             ],
@@ -74,4 +81,4 @@ class MaterialTable extends React.Component {
 
 }
 
-export default MaterialTable;
+export default MaterialTable1;

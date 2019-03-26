@@ -8,10 +8,15 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor'
-import SizeTable from './SizeTable';
-import MaterialTable from './MaterialTable';
+import SizeTable1 from './SizeTable1';
+import SizeTable2 from './SizeTable2';
+import MaterialTable1 from './MaterialTable1';
+import MaterialTable2 from './MaterialTable2';
 import CPTTable1 from './CPTTable1';
 import CPTTable2 from './CPTTable2';
+import WebCopyTable1 from "./WebCopyTable1"
+import WebCopyTable2 from "./WebCopyTable2"
+
 import FormOpen from './FormOpen';
 import { Row,Col } from 'react-bootstrap';
 
@@ -164,12 +169,19 @@ class TableDiv extends React.Component {
 
 
     render() {
-        let cptTable;
+        let cptTable,materialTable,webCopyTable,sizeTable;
         if(this.state.index===0){
             cptTable=<CPTTable1/>
+            materialTable=<MaterialTable1/>
+            sizeTable=<SizeTable1/>
+            webCopyTable=<WebCopyTable1/>
+
         }
         else if(this.state.index===1){
             cptTable=<CPTTable2/>
+            materialTable=<MaterialTable2/>
+            sizeTable=<SizeTable2/>
+            webCopyTable=<WebCopyTable2/>
         }
 
         return (
@@ -333,17 +345,18 @@ class TableDiv extends React.Component {
                             </Row>
                     </Tab>
                     <Tab eventKey="profile" title="Sizes">
-
+                         {sizeTable} 
                        {/* <SizeTable1/><SizeTable2/> */}
                     </Tab>
                     <Tab eventKey="contact" title="Materials" >
+                         {materialTable} 
                         {/* <MaterialTable1/><MaterialTable2/> */}
                     </Tab>
                     <Tab eventKey="cpt" title="CPT" >
                         {cptTable}
                     </Tab>
                     <Tab eventKey="webcopy" title="Web-Copy" >
-                        
+                         {webCopyTable} 
                     </Tab>
                 </Tabs>;
                 
